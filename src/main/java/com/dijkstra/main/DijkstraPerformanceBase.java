@@ -10,43 +10,63 @@ import com.dijkstra.performance.scenario.RandomKeithschwarzFibonacciPriorityQueu
 import com.dijkstra.performance.scenario.RandomTreeSetPriorityQueueScenario;
 
 public class DijkstraPerformanceBase {
-		
-	protected int calculateArcNumber(int size, double p) {
-		return Math.max((int)Math.round(size * size * p) - (size - 1) * 2, (size - 1) * 2);
-	}
-		
-	protected double[] parameterizedMeasurement(int size, double p) {
-		
-		System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
-		
-		PerformanceScenario scenarioBase = new RandomBaseScenario(size, p, 20, new Random(42));
-		PerformanceScenario scenarioPriorityQueue = new RandomTreeSetPriorityQueueScenario(size, p, 20, new Random(42));
-		PerformanceScenario scenarioGrowingWithTheWebFibonacciPriorityQueue = new RandomGrowingWithTheWebFibonacciPriorityQueueScenario(size, p, 20, new Random(42));
-		PerformanceScenario scenarioKeithschwarzFibonacciPriorityQueue = new RandomKeithschwarzFibonacciPriorityQueueScenario(size, p, 20, new Random(42));
-	
-		int[] p0 = scenarioBase.testPrevious(42);
-		PerformanceEngine engine0 = new PerformanceEngine(scenarioBase);
-		double m0 = engine0.measurement(20, true, false, 3, 3);
-		
-		int[] p1 = scenarioPriorityQueue.testPrevious(42);
-		PerformanceEngine engine1 = new PerformanceEngine(scenarioPriorityQueue);
-		double m1 = engine1.measurement(20, true, false, 3, 3);
-		
-		int[] p5 = scenarioGrowingWithTheWebFibonacciPriorityQueue.testPrevious(42);
-		PerformanceEngine engine5 = new PerformanceEngine(scenarioGrowingWithTheWebFibonacciPriorityQueue);
-		double m5 = engine5.measurement(20, true, false, 3, 3);
-		
-		int[] p7 = scenarioKeithschwarzFibonacciPriorityQueue.testPrevious(42);
-		PerformanceEngine engine7 = new PerformanceEngine(scenarioKeithschwarzFibonacciPriorityQueue);
-		double m7 = engine7.measurement(20, true, false, 3, 3);
-		
-		// check previous arrays from the test runs
-		for (int i = 0; i < p0.length; ++i) {
-			if (p0[i] != p1[i] || p0[i] != p5[i] || p0[i] != p7[i]) {
-				throw new RuntimeException("Problem...");
-			}
-		}
-		
-		return new double[] { size, p, calculateArcNumber(size, p), m0, m1, m5, m7 };
-	}
+
+  private static final int RANDOM_SEED = 42;
+  private static final int PRECIOUS_ARRAY_BUILD = 20;
+
+  private static final int REPEATS = 20;
+  private static final boolean SHOULD_PRINT_AVERAGE_TIMES = true;
+  private static final boolean SHOULD_PRINT_OUT_INNER_RESULTS = false;
+  private static final int SKIP_LOW = 3;
+  private static final int SKIP_HIGH = 3;
+
+  protected int calculateArcNumber(int size, double p) {
+    return Math.max((int) Math.round(size * size * p) - (size - 1) * 2, (size - 1) * 2);
+  }
+
+  protected double[] parameterizedMeasurement(int size, double p) {
+    System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
+
+    PerformanceScenario scenario =
+        new RandomBaseScenario(size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    int[] p0 = testPreviousForScenario(scenario);
+    double m0 = measureScenario(scenario);
+
+    scenario =
+        new RandomTreeSetPriorityQueueScenario(
+            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    int[] p1 = testPreviousForScenario(scenario);
+    double m1 = measureScenario(scenario);
+
+    scenario =
+        new RandomGrowingWithTheWebFibonacciPriorityQueueScenario(
+            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    int[] p2 = testPreviousForScenario(scenario);
+    double m2 = measureScenario(scenario);
+
+    scenario =
+        new RandomKeithschwarzFibonacciPriorityQueueScenario(
+            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    int[] p3 = testPreviousForScenario(scenario);
+    double m3 = measureScenario(scenario);
+
+    // check previous arrays from the test runs
+    for (int i = 0; i < p0.length; ++i) {
+      if (p0[i] != p1[i] || p0[i] != p2[i] || p0[i] != p3[i]) {
+        throw new RuntimeException("Problem...");
+      }
+    }
+
+    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, m2, m3};
+  }
+
+  private int[] testPreviousForScenario(PerformanceScenario scenario) {
+    return scenario.testPrevious(RANDOM_SEED);
+  }
+
+  private double measureScenario(PerformanceScenario scenario) {
+    PerformanceEngine engine = new PerformanceEngine(scenario);
+    return engine.measurement(
+        REPEATS, SHOULD_PRINT_AVERAGE_TIMES, SHOULD_PRINT_OUT_INNER_RESULTS, SKIP_LOW, SKIP_HIGH);
+  }
 }
