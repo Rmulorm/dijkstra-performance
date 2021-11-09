@@ -1,0 +1,5 @@
+com/dijkstra/graph/NeighbourArrayGraphGeneratorTest.class
+com/dijkstra/priority/impl/GrowingWithTheWebFibonacciPrioityQueueTest.class
+com/dijkstra/priority/PriorityObjectTest.class
+com/dijkstra/base/BaseDijkstraTest.class
+com/dijkstra/priority/PriorityQueueDijkstraTest.class
