@@ -5,7 +5,6 @@ import java.util.Random;
 import com.dijkstra.performance.PerformanceEngine;
 import com.dijkstra.performance.PerformanceScenario;
 import com.dijkstra.performance.scenario.RandomBaseScenario;
-import com.dijkstra.performance.scenario.RandomGrowingWithTheWebFibonacciPriorityQueueScenario;
 import com.dijkstra.performance.scenario.RandomKeithschwarzFibonacciPriorityQueueScenario;
 import com.dijkstra.performance.scenario.RandomTreeSetPriorityQueueScenario;
 
@@ -39,12 +38,6 @@ public class DijkstraPerformanceBase {
     double m1 = measureScenario(scenario);
 
     scenario =
-        new RandomGrowingWithTheWebFibonacciPriorityQueueScenario(
-            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
-    int[] p2 = testPreviousForScenario(scenario);
-    double m2 = measureScenario(scenario);
-
-    scenario =
         new RandomKeithschwarzFibonacciPriorityQueueScenario(
             size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p3 = testPreviousForScenario(scenario);
@@ -52,12 +45,12 @@ public class DijkstraPerformanceBase {
 
     // check previous arrays from the test runs
     for (int i = 0; i < p0.length; ++i) {
-      if (p0[i] != p1[i] || p0[i] != p2[i] || p0[i] != p3[i]) {
+      if (p0[i] != p1[i] || /*p0[i] != p2[i] ||*/ p0[i] != p3[i]) {
         throw new RuntimeException("Problem...");
       }
     }
 
-    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, m2, m3};
+    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, /*m2,*/ m3};
   }
 
   private int[] testPreviousForScenario(PerformanceScenario scenario) {
