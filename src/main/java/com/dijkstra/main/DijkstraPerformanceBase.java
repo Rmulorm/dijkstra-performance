@@ -1,12 +1,12 @@
 package com.dijkstra.main;
 
+import com.dijkstra.performance.scenario.RandomBruteForceScenario;
 import java.util.Random;
 
 import com.dijkstra.performance.PerformanceEngine;
 import com.dijkstra.performance.PerformanceScenario;
 import com.dijkstra.performance.scenario.RandomBaseScenario;
 import com.dijkstra.performance.scenario.RandomKeithschwarzFibonacciPriorityQueueScenario;
-import com.dijkstra.performance.scenario.RandomTreeSetPriorityQueueScenario;
 
 public class DijkstraPerformanceBase {
 
@@ -27,30 +27,29 @@ public class DijkstraPerformanceBase {
     System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
 
     PerformanceScenario scenario =
-        new RandomBaseScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+        new RandomBruteForceScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p0 = testPreviousForScenario(scenario);
     double m0 = measureScenario(scenario);
 
     scenario =
-        new RandomTreeSetPriorityQueueScenario(
-            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+        new RandomBaseScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p1 = testPreviousForScenario(scenario);
     double m1 = measureScenario(scenario);
 
     scenario =
         new RandomKeithschwarzFibonacciPriorityQueueScenario(
             size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
-    int[] p3 = testPreviousForScenario(scenario);
-    double m3 = measureScenario(scenario);
+    int[] p2 = testPreviousForScenario(scenario);
+    double m2 = measureScenario(scenario);
 
     // check previous arrays from the test runs
     for (int i = 0; i < p0.length; ++i) {
-      if (p0[i] != p1[i] || /*p0[i] != p2[i] ||*/ p0[i] != p3[i]) {
+      if (p0[i] != p1[i] || p0[i] != p2[i]) {
         throw new RuntimeException("Problem...");
       }
     }
 
-    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, /*m2,*/ m3};
+    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, m2};
   }
 
   private int[] testPreviousForScenario(PerformanceScenario scenario) {

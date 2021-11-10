@@ -1,6 +1,6 @@
 package com.dijkstra.performance.scenario;
 
-import com.dijkstra.base.BaseDijkstra;
+import com.dijkstra.base.BaseBruteForce;
 import com.dijkstra.graph.NeighbourArrayGraphGenerator;
 import com.dijkstra.performance.PerformanceScenario;
 import java.util.Random;
@@ -28,14 +28,14 @@ public class RandomBruteForceScenario implements PerformanceScenario {
   public void runShortestPath() {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
-      BaseDijkstra.createPreviousArray(
+      BaseBruteForce.createPreviousArray(
           generator.neighbours, generator.weights, origin, distance, previous);
     }
   }
 
   @Override
   public String getScenarioName() {
-    return "Base Dijkstra";
+    return "Base Brute Force";
   }
 
   @Override
@@ -52,8 +52,7 @@ public class RandomBruteForceScenario implements PerformanceScenario {
     int origin = random.nextInt(size);
     distance = new double[size];
     previous = new int[size];
-    //		System.out.println("origin: " + origin);
-    BaseDijkstra.createPreviousArray(
+    BaseBruteForce.createPreviousArray(
         generator.neighbours, generator.weights, origin, distance, previous);
     return previous;
   }
