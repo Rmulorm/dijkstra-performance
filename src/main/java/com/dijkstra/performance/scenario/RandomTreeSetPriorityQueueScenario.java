@@ -19,19 +19,19 @@ public class RandomTreeSetPriorityQueueScenario implements PerformanceScenario {
 
   int size;
   double p;
-  int previosArrayBuilds;
+  int previousArrayBuilds;
 
   public RandomTreeSetPriorityQueueScenario(
       int size, double p, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
-    this.previosArrayBuilds = previousArrayBuilds;
+    this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
   }
 
   @Override
   public void runShortestPath() {
-    for (int i = 0; i < previosArrayBuilds; ++i) {
+    for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
       PriorityQueueDijkstra.createPreviousArray(
           generator.neighbours,
