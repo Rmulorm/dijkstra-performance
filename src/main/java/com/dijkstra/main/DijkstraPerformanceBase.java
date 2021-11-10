@@ -12,7 +12,7 @@ import com.dijkstra.performance.scenario.RandomTreeSetPriorityQueueScenario;
 public class DijkstraPerformanceBase {
 
   private static final int RANDOM_SEED = 42;
-  private static final int PRECIOUS_ARRAY_BUILD = 20;
+  private static final int PREVIOUS_ARRAY_BUILD = 20;
 
   private static final int REPEATS = 20;
   private static final boolean SHOULD_PRINT_AVERAGE_TIMES = true;
@@ -28,25 +28,25 @@ public class DijkstraPerformanceBase {
     System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
 
     PerformanceScenario scenario =
-        new RandomBaseScenario(size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+        new RandomBaseScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p0 = testPreviousForScenario(scenario);
     double m0 = measureScenario(scenario);
 
     scenario =
         new RandomTreeSetPriorityQueueScenario(
-            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p1 = testPreviousForScenario(scenario);
     double m1 = measureScenario(scenario);
 
     scenario =
         new RandomGrowingWithTheWebFibonacciPriorityQueueScenario(
-            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p2 = testPreviousForScenario(scenario);
     double m2 = measureScenario(scenario);
 
     scenario =
         new RandomKeithschwarzFibonacciPriorityQueueScenario(
-            size, p, PRECIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p3 = testPreviousForScenario(scenario);
     double m3 = measureScenario(scenario);
 
