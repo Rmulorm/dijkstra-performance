@@ -1,9 +1,13 @@
 package com.shortestpath.priorityqueue;
 
 public interface PriorityQueue<E extends PriorityObject> {
-	public void add(E item);
-	public void decreasePriority(E item, double priority);
-	public E extractMin();
-	public void clear();
-	public int size();
+  void add(E item);
+
+  void decreasePriority(E item, double priority);
+
+  E extractMin();
+
+  void clear();
+
+  int size();
 }

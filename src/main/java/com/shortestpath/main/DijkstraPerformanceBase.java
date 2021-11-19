@@ -27,8 +27,7 @@ public class DijkstraPerformanceBase {
     System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
 
     PerformanceScenario scenario;
-    scenario =
-        new RandomBruteForceScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    scenario = new RandomBruteForceScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p0 = testPreviousForScenario(scenario);
     double m0 = measureScenario(scenario);
 

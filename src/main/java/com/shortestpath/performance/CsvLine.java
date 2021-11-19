@@ -10,7 +10,8 @@ public class CsvLine {
   private double average;
   private double averageWithoutExtremes;
 
-  public CsvLine(String scenarioName, int size, double p, double average, double averageWithoutExtremes) {
+  public CsvLine(
+      String scenarioName, int size, double p, double average, double averageWithoutExtremes) {
     this.scenarioName = scenarioName;
     this.size = size;
     this.p = p;
@@ -18,7 +19,7 @@ public class CsvLine {
     this.averageWithoutExtremes = averageWithoutExtremes;
   }
 
-  public List<String > getLineValues() {
+  public List<String> getLineValues() {
     List<String> lineValues = new ArrayList<>();
     lineValues.add(scenarioName);
     lineValues.add(String.valueOf(size));
