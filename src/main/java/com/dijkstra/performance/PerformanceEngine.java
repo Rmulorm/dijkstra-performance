@@ -57,7 +57,7 @@ public class PerformanceEngine {
                 + (endTimes[i] - graphGenerationTimes[i]) / 1000000.0);
       }
     }
-    averageShortestPathTime /= (double) repeats;
+    averageShortestPathTime /= repeats;
 
     Arrays.sort(times);
 
