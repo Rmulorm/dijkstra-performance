@@ -3,7 +3,7 @@ package com.shortestpath.performance.scenario;
 import com.shortestpath.main.ProjectConstants;
 import java.util.Random;
 
-import com.shortestpath.base.BaseDijkstra;
+import com.shortestpath.algorithms.BaseDijkstra;
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.performance.PerformanceScenario;
 

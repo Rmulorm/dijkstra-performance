@@ -1,4 +1,4 @@
-package com.shortestpath.base;
+package com.shortestpath.algorithms;
 
 import java.util.HashSet;
 import java.util.LinkedList;

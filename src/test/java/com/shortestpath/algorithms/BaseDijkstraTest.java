@@ -1,4 +1,4 @@
-package com.shortestpath.base;
+package com.shortestpath.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

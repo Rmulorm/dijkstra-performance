@@ -1,6 +1,6 @@
 package com.shortestpath.performance.scenario;
 
-import com.shortestpath.base.BruteForce;
+import com.shortestpath.algorithms.BruteForce;
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.main.ProjectConstants;
 import com.shortestpath.performance.PerformanceScenario;
