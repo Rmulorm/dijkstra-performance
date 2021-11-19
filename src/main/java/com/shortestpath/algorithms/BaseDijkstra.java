@@ -15,17 +15,17 @@ public class BaseDijkstra {
 
     distance[source] = 0.0;
 
-    HashSet<Integer> verticies = new HashSet<Integer>();
+    HashSet<Integer> vertices = new HashSet<>();
     for (int i = 0; i < largestNodeId; ++i) {
-      verticies.add(i);
+      vertices.add(i);
     }
 
-    while (verticies.size() != 0) {
+    while (vertices.size() != 0) {
 
       int u = -1;
 
       // search the element where the distance is minimum
-      for (int v : verticies) {
+      for (int v : vertices) {
         if (u == -1) {
           u = v;
         } else {
@@ -35,7 +35,7 @@ public class BaseDijkstra {
         }
       }
 
-      verticies.remove(u);
+      vertices.remove(u);
       // find the neighbours
 
       if (neighbours[u] == null) {

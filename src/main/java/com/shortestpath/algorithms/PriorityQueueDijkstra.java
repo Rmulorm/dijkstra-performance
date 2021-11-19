@@ -21,8 +21,8 @@ public class PriorityQueueDijkstra {
     priorityObjectArray[source].priority = 0.0;
 
     priorityQueue.clear();
-    for (int i = 0; i < priorityObjectArray.length; ++i) {
-      priorityQueue.add(priorityObjectArray[i]);
+    for (PriorityObject priorityObject : priorityObjectArray) {
+      priorityQueue.add(priorityObject);
     }
 
     while (priorityQueue.size() != 0) {
