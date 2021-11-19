@@ -8,14 +8,14 @@ public class GraphSizeAnalysisMain extends DijkstraPerformanceBase {
     deletePreviousRunFiles();
 
     runWithConstantP(0.1);
-    //    runWithConstantP(0.3);
+    runWithConstantP(0.3);
     //    runWithConstantP(0.5);
     //    runWithConstantP(0.7);
     //    runWithConstantP(0.9);
   }
 
   private void runWithConstantP(double p) {
-    int n = 10;
+    int n = 20;
 
     double[][] results = new double[n][];
     for (int i = 0; i < n; ++i) {
