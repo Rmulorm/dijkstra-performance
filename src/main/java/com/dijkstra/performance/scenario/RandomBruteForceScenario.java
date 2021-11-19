@@ -2,6 +2,7 @@ package com.dijkstra.performance.scenario;
 
 import com.dijkstra.base.BaseBruteForce;
 import com.dijkstra.graph.NeighbourArrayGraphGenerator;
+import com.dijkstra.main.ProjectConstants;
 import com.dijkstra.performance.PerformanceScenario;
 import java.util.Random;
 
@@ -34,8 +35,23 @@ public class RandomBruteForceScenario implements PerformanceScenario {
   }
 
   @Override
+  public int getSize() {
+    return size;
+  }
+
+  @Override
+  public double getP() {
+    return p;
+  }
+
+  @Override
   public String getScenarioName() {
     return "Base Brute Force";
+  }
+
+  @Override
+  public String getFileName() {
+    return ProjectConstants.BRUTE_FORCE_FILE_NAME;
   }
 
   @Override

@@ -1,5 +1,6 @@
 package com.dijkstra.performance.scenario;
 
+import com.dijkstra.main.ProjectConstants;
 import java.util.Random;
 
 import com.dijkstra.base.BaseDijkstra;
@@ -35,8 +36,23 @@ public class RandomBaseScenario implements PerformanceScenario {
   }
 
   @Override
+  public int getSize() {
+    return size;
+  }
+
+  @Override
+  public double getP() {
+    return p;
+  }
+
+  @Override
   public String getScenarioName() {
     return "Base Dijkstra";
+  }
+
+  @Override
+  public String getFileName() {
+    return ProjectConstants.BASE_DIJKSTRA_FILE_NAME;
   }
 
   @Override

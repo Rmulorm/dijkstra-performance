@@ -1,5 +1,6 @@
 package com.dijkstra.performance.scenario;
 
+import com.dijkstra.main.ProjectConstants;
 import java.util.Random;
 
 import com.dijkstra.graph.NeighbourArrayGraphGenerator;
@@ -8,7 +9,7 @@ import com.dijkstra.priority.PriorityQueueDijkstra;
 import com.dijkstra.priority.impl.KeithschwarzDijkstraPriorityObject;
 import com.dijkstra.priority.impl.KeithschwarzFibonacciPriorityQueue;
 
-public class RandomKeithschwarzFibonacciPriorityQueueScenario implements PerformanceScenario {
+public class RandomFibonacciPriorityQueueDijkstraScenario implements PerformanceScenario {
 
   NeighbourArrayGraphGenerator generator = new NeighbourArrayGraphGenerator();
 
@@ -21,7 +22,7 @@ public class RandomKeithschwarzFibonacciPriorityQueueScenario implements Perform
   double p;
   int previousArrayBuilds;
 
-  public RandomKeithschwarzFibonacciPriorityQueueScenario(
+  public RandomFibonacciPriorityQueueDijkstraScenario(
       int size, double p, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
@@ -44,8 +45,23 @@ public class RandomKeithschwarzFibonacciPriorityQueueScenario implements Perform
   }
 
   @Override
+  public int getSize() {
+    return size;
+  }
+
+  @Override
+  public double getP() {
+    return p;
+  }
+
+  @Override
   public String getScenarioName() {
     return "Fibonacci Priority Dijkstra";
+  }
+
+  @Override
+  public String getFileName() {
+    return ProjectConstants.PRIORITY_QUEUE_DIJKSTRA_FILE_NAME;
   }
 
   @Override

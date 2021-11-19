@@ -1,11 +1,17 @@
 package com.dijkstra.performance;
 
 public interface PerformanceScenario {
-  public String getScenarioName();
+  int getSize();
 
-  public void generateGraph();
+  double getP();
 
-  public void runShortestPath();
+  String getScenarioName();
 
-  public int[] testPrevious(int randomSeed);
+  String getFileName();
+
+  void generateGraph();
+
+  void runShortestPath();
+
+  int[] testPrevious(int randomSeed);
 }

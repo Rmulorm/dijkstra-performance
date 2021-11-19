@@ -1,6 +1,10 @@
 package com.dijkstra.performance;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
 public class PerformanceEngine {
 
@@ -61,7 +65,7 @@ public class PerformanceEngine {
     for (int i = skipLow; i < repeats - skipHigh; ++i) {
       averageShortestPathWithoutExrtremes += times[i];
     }
-    averageShortestPathWithoutExrtremes /= (double) (repeats - skipHigh - skipLow);
+    averageShortestPathWithoutExrtremes /= repeats - skipHigh - skipLow;
 
     if (printAverageTimes) {
       System.out.println(
@@ -70,8 +74,22 @@ public class PerformanceEngine {
           scenario.getScenarioName()
               + " - AverageShortestPathTimeWithoutExtremes: "
               + averageShortestPathWithoutExrtremes);
+      try {
+        outputLineToCsv(
+            new CsvLine(scenario.getScenarioName(), scenario.getSize(), scenario.getP(), averageShortestPathTime, averageShortestPathWithoutExrtremes));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
 
     return averageShortestPathWithoutExrtremes;
+  }
+
+  public void outputLineToCsv(CsvLine line) throws IOException {
+    FileWriter out = new FileWriter(scenario.getFileName(), true);
+    try (CSVPrinter printer =
+        new CSVPrinter(out, CSVFormat.EXCEL)) {
+      printer.printRecord(line.getLineValues());
+    }
   }
 }
