@@ -1,10 +1,10 @@
-package com.shortestpath.priority.impl;
+package com.shortestpath.priorityqueue.impl;
 
-import com.shortestpath.dependencies.keithschwarz.FibonacciHeap;
-import com.shortestpath.dependencies.keithschwarz.FibonacciHeap.Entry;
+import com.shortestpath.priorityqueue.dependencies.keithschwarz.FibonacciHeap;
+import com.shortestpath.priorityqueue.dependencies.keithschwarz.FibonacciHeap.Entry;
 
-import com.shortestpath.priority.PriorityObject;
-import com.shortestpath.priority.PriorityQueue;
+import com.shortestpath.priorityqueue.PriorityObject;
+import com.shortestpath.priorityqueue.PriorityQueue;
 
 public class KeithschwarzFibonacciPriorityQueue implements PriorityQueue<PriorityObject> {
 	

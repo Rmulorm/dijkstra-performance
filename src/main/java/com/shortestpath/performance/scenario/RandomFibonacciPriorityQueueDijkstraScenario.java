@@ -5,9 +5,9 @@ import java.util.Random;
 
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.performance.PerformanceScenario;
-import com.shortestpath.priority.PriorityQueueDijkstra;
-import com.shortestpath.priority.impl.KeithschwarzDijkstraPriorityObject;
-import com.shortestpath.priority.impl.KeithschwarzFibonacciPriorityQueue;
+import com.shortestpath.algorithms.PriorityQueueDijkstra;
+import com.shortestpath.priorityqueue.impl.KeithschwarzDijkstraPriorityObject;
+import com.shortestpath.priorityqueue.impl.KeithschwarzFibonacciPriorityQueue;
 
 public class RandomFibonacciPriorityQueueDijkstraScenario implements PerformanceScenario {
 

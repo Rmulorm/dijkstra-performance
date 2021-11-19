@@ -1,4 +1,4 @@
-package com.shortestpath.priority;
+package com.shortestpath.priorityqueue;
 
 public interface PriorityQueue<E extends PriorityObject> {
 	public void add(E item);

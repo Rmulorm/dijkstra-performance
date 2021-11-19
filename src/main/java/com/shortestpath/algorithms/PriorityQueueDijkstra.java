@@ -1,5 +1,7 @@
-package com.shortestpath.priority;
+package com.shortestpath.algorithms;
 
+import com.shortestpath.priorityqueue.PriorityObject;
+import com.shortestpath.priorityqueue.PriorityQueue;
 import java.util.LinkedList;
 
 public class PriorityQueueDijkstra {

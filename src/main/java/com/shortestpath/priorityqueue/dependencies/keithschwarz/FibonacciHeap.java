@@ -1,4 +1,4 @@
-package com.shortestpath.dependencies.keithschwarz;
+package com.shortestpath.priorityqueue.dependencies.keithschwarz;
 
 /***********************************************************************
  * File: FibonacciHeap.java

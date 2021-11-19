@@ -1,4 +1,4 @@
-package com.shortestpath.priority;
+package com.shortestpath.priorityqueue;
 
 public class PriorityObject implements Comparable<PriorityObject> {
 	

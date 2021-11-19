@@ -1,8 +1,8 @@
-package com.shortestpath.priority.impl;
+package com.shortestpath.priorityqueue.impl;
 
-import com.shortestpath.dependencies.keithschwarz.FibonacciHeap.Entry;
+import com.shortestpath.priorityqueue.dependencies.keithschwarz.FibonacciHeap.Entry;
 
-import com.shortestpath.priority.PriorityObject;
+import com.shortestpath.priorityqueue.PriorityObject;
 
 public class KeithschwarzDijkstraPriorityObject extends PriorityObject {
 	

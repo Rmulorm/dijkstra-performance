@@ -1,4 +1,4 @@
-package com.shortestpath.priority;
+package com.shortestpath.priorityqueue;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
