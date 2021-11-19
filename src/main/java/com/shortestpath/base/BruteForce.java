@@ -3,7 +3,7 @@ package com.shortestpath.base;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-public class BaseBruteForce {
+public class BruteForce {
   public static void createPreviousArray(
       int[][] neighbours, double[][] weights, int source, double[] distance, int[] previous) {
 

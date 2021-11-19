@@ -1,6 +1,6 @@
 package com.shortestpath.performance.scenario;
 
-import com.shortestpath.base.BaseBruteForce;
+import com.shortestpath.base.BruteForce;
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.main.ProjectConstants;
 import com.shortestpath.performance.PerformanceScenario;
@@ -29,7 +29,7 @@ public class RandomBruteForceScenario implements PerformanceScenario {
   public void runShortestPath() {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
-      BaseBruteForce.createPreviousArray(
+      BruteForce.createPreviousArray(
           generator.neighbours, generator.weights, origin, distance, previous);
     }
   }
@@ -68,7 +68,7 @@ public class RandomBruteForceScenario implements PerformanceScenario {
     int origin = random.nextInt(size);
     distance = new double[size];
     previous = new int[size];
-    BaseBruteForce.createPreviousArray(
+    BruteForce.createPreviousArray(
         generator.neighbours, generator.weights, origin, distance, previous);
     return previous;
   }
