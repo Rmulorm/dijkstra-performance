@@ -1,13 +1,11 @@
 package com.dijkstra.main;
 
 import com.dijkstra.performance.scenario.RandomBruteForceScenario;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.dijkstra.performance.PerformanceEngine;
 import com.dijkstra.performance.PerformanceScenario;
-import com.dijkstra.performance.scenario.RandomBaseScenario;
+import com.dijkstra.performance.scenario.RandomBaseDijkstraScenario;
 import com.dijkstra.performance.scenario.RandomFibonacciPriorityQueueDijkstraScenario;
 
 public class DijkstraPerformanceBase {
@@ -35,7 +33,7 @@ public class DijkstraPerformanceBase {
     double m0 = measureScenario(scenario);
 
     scenario =
-        new RandomBaseScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+        new RandomBaseDijkstraScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p1 = testPreviousForScenario(scenario);
     double m1 = measureScenario(scenario);
 

@@ -7,7 +7,7 @@ import com.dijkstra.base.BaseDijkstra;
 import com.dijkstra.graph.NeighbourArrayGraphGenerator;
 import com.dijkstra.performance.PerformanceScenario;
 
-public class RandomBaseScenario implements PerformanceScenario {
+public class RandomBaseDijkstraScenario implements PerformanceScenario {
 
   NeighbourArrayGraphGenerator generator = new NeighbourArrayGraphGenerator();
 
@@ -19,7 +19,7 @@ public class RandomBaseScenario implements PerformanceScenario {
   double p;
   int previousArrayBuilds;
 
-  public RandomBaseScenario(int size, double p, int previousArrayBuilds, Random random) {
+  public RandomBaseDijkstraScenario(int size, double p, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
     this.previousArrayBuilds = previousArrayBuilds;
