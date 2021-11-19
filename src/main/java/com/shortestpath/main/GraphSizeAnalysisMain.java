@@ -4,11 +4,7 @@ import java.io.File;
 
 public class GraphSizeAnalysisMain extends DijkstraPerformanceBase {
 
-  public static void main(String[] args) {
-    new GraphSizeAnalysisMain().run();
-  }
-
-  private void run() {
+  public void run() {
     deletePreviousRunFiles();
 
     runWithConstantP(0.1);
