@@ -6,7 +6,7 @@ import java.util.Random;
 import com.shortestpath.performance.PerformanceEngine;
 import com.shortestpath.performance.PerformanceScenario;
 import com.shortestpath.performance.scenario.RandomBaseDijkstraScenario;
-import com.shortestpath.performance.scenario.RandomFibonacciPriorityQueueDijkstraScenario;
+import com.shortestpath.performance.scenario.RandomPriorityQueueDijkstraScenario;
 
 public class DijkstraPerformanceBase {
 
@@ -37,7 +37,7 @@ public class DijkstraPerformanceBase {
     double m1 = measureScenario(scenario);
 
     scenario =
-        new RandomFibonacciPriorityQueueDijkstraScenario(
+        new RandomPriorityQueueDijkstraScenario(
             size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p2 = testPreviousForScenario(scenario);
     double m2 = measureScenario(scenario);

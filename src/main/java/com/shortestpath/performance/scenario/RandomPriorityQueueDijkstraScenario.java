@@ -9,7 +9,7 @@ import com.shortestpath.algorithms.PriorityQueueDijkstra;
 import com.shortestpath.priorityqueue.impl.KeithschwarzDijkstraPriorityObject;
 import com.shortestpath.priorityqueue.impl.KeithschwarzFibonacciPriorityQueue;
 
-public class RandomFibonacciPriorityQueueDijkstraScenario implements PerformanceScenario {
+public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario {
 
   NeighbourArrayGraphGenerator generator = new NeighbourArrayGraphGenerator();
 
@@ -22,7 +22,7 @@ public class RandomFibonacciPriorityQueueDijkstraScenario implements Performance
   double p;
   int previousArrayBuilds;
 
-  public RandomFibonacciPriorityQueueDijkstraScenario(
+  public RandomPriorityQueueDijkstraScenario(
       int size, double p, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
