@@ -1,7 +1,6 @@
 package com.shortestpath.algorithms;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 
 public class BaseDijkstra {
   public static void createPreviousArray(
@@ -51,26 +50,5 @@ public class BaseDijkstra {
         }
       }
     }
-  }
-
-  public static int[] shortestPath(int[] previous, int destination) {
-    if (previous[destination] == -1) {
-      return null;
-    }
-
-    LinkedList<Integer> reversedRoute = new LinkedList<>();
-    int u = destination;
-
-    while (u != -1) {
-      reversedRoute.add(u);
-      u = previous[u];
-    }
-
-    int[] path = new int[reversedRoute.size()];
-    for (int i = 0; i < path.length; ++i) {
-      path[i] = reversedRoute.get(path.length - 1 - i);
-    }
-
-    return path;
   }
 }
