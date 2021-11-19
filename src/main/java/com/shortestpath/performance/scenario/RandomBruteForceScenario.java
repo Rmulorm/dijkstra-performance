@@ -1,6 +1,7 @@
 package com.shortestpath.performance.scenario;
 
 import com.shortestpath.algorithms.BruteForce;
+import com.shortestpath.algorithms.MinimumSpanningTreeGenerator;
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.main.ProjectConstants;
 import com.shortestpath.performance.PerformanceScenario;
@@ -10,9 +11,9 @@ public class RandomBruteForceScenario implements PerformanceScenario {
 
   NeighbourArrayGraphGenerator generator = new NeighbourArrayGraphGenerator();
 
-  double[] distance;
   int[] previous;
   Random random;
+  MinimumSpanningTreeGenerator minimumspanningTreeGenerator;
 
   int size;
   double p;
@@ -23,14 +24,15 @@ public class RandomBruteForceScenario implements PerformanceScenario {
     this.p = p;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
+    this.minimumspanningTreeGenerator = new BruteForce();
   }
 
   @Override
   public void runShortestPath() {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
-      BruteForce.createPreviousArray(
-          generator.neighbours, generator.weights, origin, distance, previous);
+      previous = minimumspanningTreeGenerator.generateMinimumSpanningTree(
+          generator.neighbours, generator.weights, origin, size);
     }
   }
 
@@ -56,7 +58,6 @@ public class RandomBruteForceScenario implements PerformanceScenario {
 
   @Override
   public void generateGraph() {
-    distance = new double[size];
     previous = new int[size];
     generator.generateRandomGraph(size, p, random);
   }
@@ -66,10 +67,8 @@ public class RandomBruteForceScenario implements PerformanceScenario {
     Random random = new Random(randomSeed);
     generator.generateRandomGraph(size, p, random);
     int origin = random.nextInt(size);
-    distance = new double[size];
-    previous = new int[size];
-    BruteForce.createPreviousArray(
-        generator.neighbours, generator.weights, origin, distance, previous);
+    previous =  minimumspanningTreeGenerator.generateMinimumSpanningTree(
+        generator.neighbours, generator.weights, origin, size);
     return previous;
   }
 }

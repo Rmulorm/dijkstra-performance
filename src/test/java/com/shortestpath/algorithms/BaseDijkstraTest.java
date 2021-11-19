@@ -23,11 +23,10 @@ public class BaseDijkstraTest {
 			new double[] { 10 },
 			null
 		};
-		
-		int[] previous = new int[4];
-		double[] distance = new double[4];
-		
-		BaseDijkstra.createPreviousArray(neighbours, weights, 0, distance, previous);
+
+		int size = 4;
+
+		int[] previous = new BaseDijkstra().generateMinimumSpanningTree(neighbours, weights, 0, size);
 		int[] path = ShortestPathUtil.shortestPath(previous, 3);
 
 		assertNotNull(path);

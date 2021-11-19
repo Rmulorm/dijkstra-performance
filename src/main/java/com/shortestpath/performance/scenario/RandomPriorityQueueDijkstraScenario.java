@@ -1,5 +1,6 @@
 package com.shortestpath.performance.scenario;
 
+import com.shortestpath.algorithms.MinimumSpanningTreeGenerator;
 import com.shortestpath.main.ProjectConstants;
 import java.util.Random;
 
@@ -14,9 +15,8 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
   NeighbourArrayGraphGenerator generator = new NeighbourArrayGraphGenerator();
 
   int[] previous;
-  KeithschwarzDijkstraPriorityObject[] priorityObjectArray;
-  KeithschwarzFibonacciPriorityQueue priorityQueue;
   Random random;
+  MinimumSpanningTreeGenerator minimumspanningTreeGenerator;
 
   int size;
   double p;
@@ -28,19 +28,16 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
     this.p = p;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
+    this.minimumspanningTreeGenerator = new PriorityQueueDijkstra();
   }
 
   @Override
   public void runShortestPath() {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
-      PriorityQueueDijkstra.createPreviousArray(
-          generator.neighbours,
-          generator.weights,
-          origin,
-          previous,
-          priorityObjectArray,
-          priorityQueue);
+      previous =
+          minimumspanningTreeGenerator.generateMinimumSpanningTree(
+              generator.neighbours, generator.weights, origin, size);
     }
   }
 
@@ -68,32 +65,17 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
   public void generateGraph() {
     previous = new int[size];
     generator.generateRandomGraph(size, p, random);
-    priorityQueue = new KeithschwarzFibonacciPriorityQueue();
-    priorityObjectArray = new KeithschwarzDijkstraPriorityObject[size];
-    for (int i = 0; i < size; ++i) {
-      priorityObjectArray[i] = new KeithschwarzDijkstraPriorityObject(i, 0.0);
-    }
   }
 
   @Override
   public int[] testPrevious(int randomSeed) {
     Random random = new Random(randomSeed);
-    previous = new int[size];
     generator.generateRandomGraph(size, p, random);
-    priorityQueue = new KeithschwarzFibonacciPriorityQueue();
-    priorityObjectArray = new KeithschwarzDijkstraPriorityObject[size];
-    for (int i = 0; i < size; ++i) {
-      priorityObjectArray[i] = new KeithschwarzDijkstraPriorityObject(i, 0.0);
-    }
+    previous = new int[size];
     int origin = random.nextInt(size);
-    //		System.out.println("origin: " + origin);
-    PriorityQueueDijkstra.createPreviousArray(
-        generator.neighbours,
-        generator.weights,
-        origin,
-        previous,
-        priorityObjectArray,
-        priorityQueue);
+    previous =
+        minimumspanningTreeGenerator.generateMinimumSpanningTree(
+            generator.neighbours, generator.weights, origin, size);
     return previous;
   }
 }
