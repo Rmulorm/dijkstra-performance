@@ -78,8 +78,8 @@ public class PerformanceEngine {
         outputLineToCsv(
             new CsvLine(
                 scenario.getScenarioName(),
-                scenario.getSize(),
                 scenario.getP(),
+                scenario.getSize(),
                 averageShortestPathTime,
                 averageShortestPathWithoutExrtremes));
       } catch (IOException e) {
@@ -92,7 +92,7 @@ public class PerformanceEngine {
 
   public void outputLineToCsv(CsvLine line) throws IOException {
     FileWriter out = new FileWriter(scenario.getFileName(), true);
-    try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.EXCEL)) {
+    try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.EXCEL.withDelimiter(';'))) {
       printer.printRecord(line.getLineValues());
     }
   }
