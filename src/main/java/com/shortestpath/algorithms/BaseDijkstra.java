@@ -5,8 +5,8 @@ import java.util.HashSet;
 public class BaseDijkstra implements MinimumSpanningTreeGenerator {
 
   @Override
-  public int[] generateMinimumSpanningTree(int[][] neighbours, double[][] weights,
-      int source, int size) {
+  public int[] generateMinimumSpanningTree(
+      int[][] neighbours, double[][] weights, int source, int size) {
     int[] minimumSpanningTree = new int[size];
     double[] distances = new double[size];
 
@@ -41,7 +41,6 @@ public class BaseDijkstra implements MinimumSpanningTreeGenerator {
 
       vertices.remove(u);
       // find the neighbours
-
       if (neighbours[u] == null) {
         continue;
       }
