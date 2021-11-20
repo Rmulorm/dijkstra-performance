@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-public class BaseDijkstraTest {
+public class ArrayDijkstraTest {
 
 	@Test
 	public void test() {
@@ -26,7 +26,7 @@ public class BaseDijkstraTest {
 
 		int size = 4;
 
-		int[] previous = new BaseDijkstra().generateShortestPathForWholeGraph(neighbours, weights, 0, size);
+		int[] previous = new ArrayDijkstra().generateShortestPathForWholeGraph(neighbours, weights, 0, size);
 		int[] path = ShortestPathUtil.shortestPath(previous, 3);
 
 		assertNotNull(path);

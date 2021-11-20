@@ -15,7 +15,7 @@ public class GraphSizeAnalysisMain extends DijkstraPerformanceBase {
   }
 
   private void runWithConstantP(double p) {
-    int n = 50;
+    int n = 20;
 
     double[][] results = new double[n][];
     for (int i = 0; i < n; ++i) {

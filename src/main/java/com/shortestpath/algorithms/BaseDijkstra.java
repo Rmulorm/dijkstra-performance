@@ -1,59 +1,38 @@
 package com.shortestpath.algorithms;
 
-import java.util.HashSet;
+public abstract class BaseDijkstra implements ShortestPathGenerator {
 
-public class BaseDijkstra implements ShortestPathGenerator {
+  protected int[] shortestPath;
 
   @Override
   public int[] generateShortestPathForWholeGraph(
       int[][] neighbours, double[][] weights, int source, int size) {
-    int[] shortestPath = new int[size];
-    double[] distances = new double[size];
+    initializeShortestPath(size);
 
-    int largestNodeId = neighbours.length;
+    initializeQueue(source, size);
 
-    for (int i = 0; i < largestNodeId; ++i) {
-      distances[i] = Double.MAX_VALUE;
-      shortestPath[i] = -1;
-    }
+    while (getCurrentQueueSize() != 0) {
+      int u = extractMin();
 
-    distances[source] = 0.0;
-
-    HashSet<Integer> vertices = new HashSet<>();
-    for (int i = 0; i < largestNodeId; ++i) {
-      vertices.add(i);
-    }
-
-    while (vertices.size() != 0) {
-
-      int u = -1;
-
-      // search the element where the distance is minimum
-      for (int v : vertices) {
-        if (u == -1) {
-          u = v;
-        } else {
-          if (distances[u] > distances[v]) {
-            u = v;
-          }
-        }
-      }
-
-      vertices.remove(u);
-      // find the neighbours
       if (neighbours[u] == null) {
         continue;
       }
 
       for (int i = 0; i < neighbours[u].length; ++i) {
-        double alt = distances[u] + weights[u][i];
-        if (alt < distances[neighbours[u][i]]) {
-          distances[neighbours[u][i]] = alt;
-          shortestPath[neighbours[u][i]] = u;
-        }
+        relax(neighbours[u][i], weights[u][i], u);
       }
     }
 
     return shortestPath;
   }
+
+  protected abstract void initializeShortestPath(int size);
+
+  protected abstract void initializeQueue(int source, int size);
+
+  protected abstract int getCurrentQueueSize();
+
+  protected abstract int extractMin();
+
+  protected abstract void relax(int i, double v, int u);
 }

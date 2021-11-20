@@ -4,7 +4,7 @@ import com.shortestpath.algorithms.ShortestPathGenerator;
 import com.shortestpath.main.ProjectConstants;
 import java.util.Random;
 
-import com.shortestpath.algorithms.BaseDijkstra;
+import com.shortestpath.algorithms.ArrayDijkstra;
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.performance.PerformanceScenario;
 
@@ -26,7 +26,7 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
     this.p = p;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
-    this.spanningTreeGenerator = new BaseDijkstra();
+    this.spanningTreeGenerator = new ArrayDijkstra();
   }
 
   @Override

@@ -5,15 +5,20 @@ import com.shortestpath.priorityqueue.PriorityQueue;
 import com.shortestpath.priorityqueue.impl.KeithschwarzDijkstraPriorityObject;
 import com.shortestpath.priorityqueue.impl.KeithschwarzFibonacciPriorityQueue;
 
-public class PriorityQueueDijkstra implements ShortestPathGenerator {
+public class PriorityQueueDijkstra extends BaseDijkstra {
+
+  private PriorityQueue<PriorityObject> priorityQueue;
+  private PriorityObject[] priorityObjectArray;
 
   @Override
-  public int[] generateShortestPathForWholeGraph(
-      int[][] neighbours, double[][] weights, int source, int size) {
-    int[] shortestPath = new int[size];
+  protected void initializeShortestPath(int size) {
+    shortestPath = new int[size];
+  }
 
-    PriorityQueue<PriorityObject> priorityQueue = new KeithschwarzFibonacciPriorityQueue();
-    PriorityObject[] priorityObjectArray = new KeithschwarzDijkstraPriorityObject[size];
+  @Override
+  protected void initializeQueue(int source, int size) {
+    priorityQueue = new KeithschwarzFibonacciPriorityQueue();
+    priorityObjectArray = new KeithschwarzDijkstraPriorityObject[size];
     for (int i = 0; i < size; ++i) {
       priorityObjectArray[i] = new KeithschwarzDijkstraPriorityObject(i, 0.0);
     }
@@ -29,27 +34,25 @@ public class PriorityQueueDijkstra implements ShortestPathGenerator {
     for (PriorityObject priorityObject : priorityObjectArray) {
       priorityQueue.add(priorityObject);
     }
+  }
 
-    while (priorityQueue.size() != 0) {
+  @Override
+  protected int getCurrentQueueSize() {
+    return priorityQueue.size();
+  }
 
-      // extract min
-      PriorityObject min = priorityQueue.extractMin();
-      int u = min.node;
+  @Override
+  protected int extractMin() {
+    PriorityObject min = priorityQueue.extractMin();
+    return min.node;
+  }
 
-      // find the neighbours
-      if (neighbours[u] == null) {
-        continue;
-      }
-
-      for (int i = 0; i < neighbours[u].length; ++i) {
-        double alt = priorityObjectArray[u].priority + weights[u][i];
-        if (alt < priorityObjectArray[neighbours[u][i]].priority) {
-          priorityQueue.decreasePriority(priorityObjectArray[neighbours[u][i]], alt);
-          shortestPath[neighbours[u][i]] = u;
-        }
-      }
+  @Override
+  protected void relax(int neighbour, double distance, int u) {
+    double alt = priorityObjectArray[u].priority + distance;
+    if (alt < priorityObjectArray[neighbour].priority) {
+      priorityQueue.decreasePriority(priorityObjectArray[neighbour], alt);
+      shortestPath[neighbour] = u;
     }
-
-    return shortestPath;
   }
 }

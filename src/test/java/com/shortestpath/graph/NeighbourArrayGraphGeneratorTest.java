@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
-import com.shortestpath.algorithms.BaseDijkstra;
+import com.shortestpath.algorithms.ArrayDijkstra;
 import org.junit.jupiter.api.Test;
 
 public class NeighbourArrayGraphGeneratorTest {
@@ -38,7 +38,7 @@ public class NeighbourArrayGraphGeneratorTest {
 
     for (int origin = 0; origin < 10; ++origin) {
       previous =
-          new BaseDijkstra()
+          new ArrayDijkstra()
               .generateShortestPathForWholeGraph(generator.neighbours, generator.weights, origin, size);
       boolean valid = true;
       for (int i = 0; i < 10; ++i) {
