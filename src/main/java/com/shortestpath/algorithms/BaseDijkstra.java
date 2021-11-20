@@ -2,19 +2,19 @@ package com.shortestpath.algorithms;
 
 import java.util.HashSet;
 
-public class BaseDijkstra implements MinimumSpanningTreeGenerator {
+public class BaseDijkstra implements ShortestPathGenerator {
 
   @Override
-  public int[] generateMinimumSpanningTree(
+  public int[] generateShortestPathForWholeGraph(
       int[][] neighbours, double[][] weights, int source, int size) {
-    int[] minimumSpanningTree = new int[size];
+    int[] shortestPath = new int[size];
     double[] distances = new double[size];
 
     int largestNodeId = neighbours.length;
 
     for (int i = 0; i < largestNodeId; ++i) {
       distances[i] = Double.MAX_VALUE;
-      minimumSpanningTree[i] = -1;
+      shortestPath[i] = -1;
     }
 
     distances[source] = 0.0;
@@ -49,11 +49,11 @@ public class BaseDijkstra implements MinimumSpanningTreeGenerator {
         double alt = distances[u] + weights[u][i];
         if (alt < distances[neighbours[u][i]]) {
           distances[neighbours[u][i]] = alt;
-          minimumSpanningTree[neighbours[u][i]] = u;
+          shortestPath[neighbours[u][i]] = u;
         }
       }
     }
 
-    return minimumSpanningTree;
+    return shortestPath;
   }
 }

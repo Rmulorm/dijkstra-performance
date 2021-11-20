@@ -1,14 +1,12 @@
 package com.shortestpath.performance.scenario;
 
-import com.shortestpath.algorithms.MinimumSpanningTreeGenerator;
+import com.shortestpath.algorithms.ShortestPathGenerator;
 import com.shortestpath.main.ProjectConstants;
 import java.util.Random;
 
 import com.shortestpath.graph.NeighbourArrayGraphGenerator;
 import com.shortestpath.performance.PerformanceScenario;
 import com.shortestpath.algorithms.PriorityQueueDijkstra;
-import com.shortestpath.priorityqueue.impl.KeithschwarzDijkstraPriorityObject;
-import com.shortestpath.priorityqueue.impl.KeithschwarzFibonacciPriorityQueue;
 
 public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario {
 
@@ -16,7 +14,7 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
 
   int[] previous;
   Random random;
-  MinimumSpanningTreeGenerator minimumspanningTreeGenerator;
+  ShortestPathGenerator shortestPathGenerator;
 
   int size;
   double p;
@@ -28,7 +26,7 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
     this.p = p;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
-    this.minimumspanningTreeGenerator = new PriorityQueueDijkstra();
+    this.shortestPathGenerator = new PriorityQueueDijkstra();
   }
 
   @Override
@@ -36,7 +34,7 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
       previous =
-          minimumspanningTreeGenerator.generateMinimumSpanningTree(
+          shortestPathGenerator.generateShortestPathForWholeGraph(
               generator.neighbours, generator.weights, origin, size);
     }
   }
@@ -74,7 +72,7 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
     previous = new int[size];
     int origin = random.nextInt(size);
     previous =
-        minimumspanningTreeGenerator.generateMinimumSpanningTree(
+        shortestPathGenerator.generateShortestPathForWholeGraph(
             generator.neighbours, generator.weights, origin, size);
     return previous;
   }

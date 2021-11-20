@@ -26,7 +26,7 @@ public class BaseDijkstraTest {
 
 		int size = 4;
 
-		int[] previous = new BaseDijkstra().generateMinimumSpanningTree(neighbours, weights, 0, size);
+		int[] previous = new BaseDijkstra().generateShortestPathForWholeGraph(neighbours, weights, 0, size);
 		int[] path = ShortestPathUtil.shortestPath(previous, 3);
 
 		assertNotNull(path);

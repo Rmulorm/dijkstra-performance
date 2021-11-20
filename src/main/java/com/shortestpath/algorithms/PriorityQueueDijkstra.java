@@ -5,12 +5,12 @@ import com.shortestpath.priorityqueue.PriorityQueue;
 import com.shortestpath.priorityqueue.impl.KeithschwarzDijkstraPriorityObject;
 import com.shortestpath.priorityqueue.impl.KeithschwarzFibonacciPriorityQueue;
 
-public class PriorityQueueDijkstra implements MinimumSpanningTreeGenerator {
+public class PriorityQueueDijkstra implements ShortestPathGenerator {
 
   @Override
-  public int[] generateMinimumSpanningTree(
+  public int[] generateShortestPathForWholeGraph(
       int[][] neighbours, double[][] weights, int source, int size) {
-    int[] minimumSpanningTree = new int[size];
+    int[] shortestPath = new int[size];
 
     PriorityQueue<PriorityObject> priorityQueue = new KeithschwarzFibonacciPriorityQueue();
     PriorityObject[] priorityObjectArray = new KeithschwarzDijkstraPriorityObject[size];
@@ -20,7 +20,7 @@ public class PriorityQueueDijkstra implements MinimumSpanningTreeGenerator {
 
     for (int i = 0; i < priorityObjectArray.length; ++i) {
       priorityObjectArray[i].priority = Double.MAX_VALUE;
-      minimumSpanningTree[i] = -1;
+      shortestPath[i] = -1;
     }
 
     priorityObjectArray[source].priority = 0.0;
@@ -45,11 +45,11 @@ public class PriorityQueueDijkstra implements MinimumSpanningTreeGenerator {
         double alt = priorityObjectArray[u].priority + weights[u][i];
         if (alt < priorityObjectArray[neighbours[u][i]].priority) {
           priorityQueue.decreasePriority(priorityObjectArray[neighbours[u][i]], alt);
-          minimumSpanningTree[neighbours[u][i]] = u;
+          shortestPath[neighbours[u][i]] = u;
         }
       }
     }
 
-    return minimumSpanningTree;
+    return shortestPath;
   }
 }

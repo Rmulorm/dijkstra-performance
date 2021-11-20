@@ -1,6 +1,6 @@
 package com.shortestpath.algorithms;
 
-public interface MinimumSpanningTreeGenerator {
-  int[] generateMinimumSpanningTree(
+public interface ShortestPathGenerator {
+  int[] generateShortestPathForWholeGraph(
       int[][] neighbours, double[][] weights, int source, int size);
 }

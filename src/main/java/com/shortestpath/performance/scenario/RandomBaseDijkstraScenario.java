@@ -1,6 +1,6 @@
 package com.shortestpath.performance.scenario;
 
-import com.shortestpath.algorithms.MinimumSpanningTreeGenerator;
+import com.shortestpath.algorithms.ShortestPathGenerator;
 import com.shortestpath.main.ProjectConstants;
 import java.util.Random;
 
@@ -15,7 +15,7 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
   double[] distance;
   int[] previous;
   Random random;
-  MinimumSpanningTreeGenerator spanningTreeGenerator;
+  ShortestPathGenerator spanningTreeGenerator;
 
   int size;
   double p;
@@ -34,7 +34,7 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
       previous =
-          spanningTreeGenerator.generateMinimumSpanningTree(
+          spanningTreeGenerator.generateShortestPathForWholeGraph(
               generator.neighbours, generator.weights, origin, size);
     }
   }
@@ -73,7 +73,7 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
     int origin = random.nextInt(size);
     distance = new double[size];
     previous =
-        spanningTreeGenerator.generateMinimumSpanningTree(
+        spanningTreeGenerator.generateShortestPathForWholeGraph(
             generator.neighbours, generator.weights, origin, size);
     return previous;
   }

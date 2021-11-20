@@ -39,7 +39,7 @@ public class NeighbourArrayGraphGeneratorTest {
     for (int origin = 0; origin < 10; ++origin) {
       previous =
           new BaseDijkstra()
-              .generateMinimumSpanningTree(generator.neighbours, generator.weights, origin, size);
+              .generateShortestPathForWholeGraph(generator.neighbours, generator.weights, origin, size);
       boolean valid = true;
       for (int i = 0; i < 10; ++i) {
         if (i == origin) {
