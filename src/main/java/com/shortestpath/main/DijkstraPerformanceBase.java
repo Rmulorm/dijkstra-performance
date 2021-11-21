@@ -26,19 +26,23 @@ public class DijkstraPerformanceBase {
   protected double[] parameterizedMeasurement(int size, double p) {
     System.out.println("Size: " + size + ", p: " + p + ", #arcs: " + calculateArcNumber(size, p));
 
+    int arcs = calculateArcNumber(size, p);
+
     PerformanceScenario scenario;
-    scenario = new RandomBruteForceScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+    scenario =
+        new RandomBruteForceScenario(size, p, arcs, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p0 = testPreviousForScenario(scenario);
     double m0 = measureScenario(scenario);
 
     scenario =
-        new RandomBaseDijkstraScenario(size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+        new RandomBaseDijkstraScenario(
+            size, p, arcs, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p1 = testPreviousForScenario(scenario);
     double m1 = measureScenario(scenario);
 
     scenario =
         new RandomPriorityQueueDijkstraScenario(
-            size, p, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
+            size, p, arcs, PREVIOUS_ARRAY_BUILD, new Random(RANDOM_SEED));
     int[] p2 = testPreviousForScenario(scenario);
     double m2 = measureScenario(scenario);
 
@@ -49,7 +53,7 @@ public class DijkstraPerformanceBase {
       }
     }
 
-    return new double[] {size, p, calculateArcNumber(size, p), m0, m1, m2};
+    return new double[] {size, p, arcs, m0, m1, m2};
   }
 
   private int[] testPreviousForScenario(PerformanceScenario scenario) {

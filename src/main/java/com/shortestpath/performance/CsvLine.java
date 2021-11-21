@@ -8,17 +8,17 @@ import java.util.Locale;
 
 public class CsvLine {
   private final String scenarioName;
-  private final double p;
   private final int size;
+  private final int arcs;
   private final double average;
   private final double averageWithoutExtremes;
   private final DecimalFormat formatter;
 
   public CsvLine(
-      String scenarioName,double p, int size, double average, double averageWithoutExtremes) {
+      String scenarioName, int size, int arcs, double average, double averageWithoutExtremes) {
     this.scenarioName = scenarioName;
-    this.p = p;
     this.size = size;
+    this.arcs = arcs;
     this.average = average;
     this.averageWithoutExtremes = averageWithoutExtremes;
     this.formatter = createFormatter();
@@ -34,14 +34,20 @@ public class CsvLine {
   public List<String> getLineValues() {
     List<String> lineValues = new ArrayList<>();
     lineValues.add(scenarioName);
-    lineValues.add(Double.toString(p));
     lineValues.add(String.valueOf(size));
+    lineValues.add(String.valueOf(arcs));
     lineValues.add(formatter.format(average));
     lineValues.add(formatter.format(averageWithoutExtremes));
     return lineValues;
   }
 
-  public static String[] csvHeaders() {
-    return new String[] {"Scenario Name", "Size", "P", "Average", "Average Without Extremes"};
+  public static List<String> csvHeaders() {
+    List<String> headers = new ArrayList<>();
+    headers.add("Scenario Name");
+    headers.add("Size");
+    headers.add("Arcs");
+    headers.add("Average");
+    headers.add("Average Without Extremes");
+    return headers;
   }
 }

@@ -5,6 +5,8 @@ public interface PerformanceScenario {
 
   double getP();
 
+  int getArcs();
+
   String getScenarioName();
 
   String getFileName();

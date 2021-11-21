@@ -18,12 +18,14 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
 
   int size;
   double p;
+  int arcs;
   int previousArrayBuilds;
 
   public RandomPriorityQueueDijkstraScenario(
-      int size, double p, int previousArrayBuilds, Random random) {
+      int size, double p, int arcs, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
+    this.arcs = arcs;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
     this.shortestPathGenerator = new PriorityQueueDijkstra();
@@ -47,6 +49,11 @@ public class RandomPriorityQueueDijkstraScenario implements PerformanceScenario 
   @Override
   public double getP() {
     return p;
+  }
+
+  @Override
+  public int getArcs() {
+    return arcs;
   }
 
   @Override

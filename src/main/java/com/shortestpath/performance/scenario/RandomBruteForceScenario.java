@@ -17,11 +17,14 @@ public class RandomBruteForceScenario implements PerformanceScenario {
 
   int size;
   double p;
+  int arcs;
   int previousArrayBuilds;
 
-  public RandomBruteForceScenario(int size, double p, int previousArrayBuilds, Random random) {
+  public RandomBruteForceScenario(
+      int size, double p, int arcs, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
+    this.arcs = arcs;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
     this.shortestPathGenerator = new BruteForce();
@@ -31,8 +34,9 @@ public class RandomBruteForceScenario implements PerformanceScenario {
   public void runShortestPath() {
     for (int i = 0; i < previousArrayBuilds; ++i) {
       int origin = random.nextInt(size);
-      previous = shortestPathGenerator.generateShortestPathForWholeGraph(
-          generator.neighbours, generator.weights, origin, size);
+      previous =
+          shortestPathGenerator.generateShortestPathForWholeGraph(
+              generator.neighbours, generator.weights, origin, size);
     }
   }
 
@@ -44,6 +48,11 @@ public class RandomBruteForceScenario implements PerformanceScenario {
   @Override
   public double getP() {
     return p;
+  }
+
+  @Override
+  public int getArcs() {
+    return arcs;
   }
 
   @Override
@@ -67,8 +76,9 @@ public class RandomBruteForceScenario implements PerformanceScenario {
     Random random = new Random(randomSeed);
     generator.generateRandomGraph(size, p, random);
     int origin = random.nextInt(size);
-    previous =  shortestPathGenerator.generateShortestPathForWholeGraph(
-        generator.neighbours, generator.weights, origin, size);
+    previous =
+        shortestPathGenerator.generateShortestPathForWholeGraph(
+            generator.neighbours, generator.weights, origin, size);
     return previous;
   }
 }

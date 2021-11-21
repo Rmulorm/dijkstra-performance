@@ -19,11 +19,13 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
 
   int size;
   double p;
+  int arcs;
   int previousArrayBuilds;
 
-  public RandomBaseDijkstraScenario(int size, double p, int previousArrayBuilds, Random random) {
+  public RandomBaseDijkstraScenario(int size, double p, int arcs, int previousArrayBuilds, Random random) {
     this.size = size;
     this.p = p;
+    this.arcs = arcs;
     this.previousArrayBuilds = previousArrayBuilds;
     this.random = random;
     this.spanningTreeGenerator = new ArrayDijkstra();
@@ -47,6 +49,11 @@ public class RandomBaseDijkstraScenario implements PerformanceScenario {
   @Override
   public double getP() {
     return p;
+  }
+
+  @Override
+  public int getArcs() {
+    return arcs;
   }
 
   @Override

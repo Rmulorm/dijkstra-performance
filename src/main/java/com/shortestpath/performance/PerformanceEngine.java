@@ -78,8 +78,8 @@ public class PerformanceEngine {
         outputLineToCsv(
             new CsvLine(
                 scenario.getScenarioName(),
-                scenario.getP(),
                 scenario.getSize(),
+                scenario.getArcs(),
                 averageShortestPathTime,
                 averageShortestPathWithoutExrtremes));
       } catch (IOException e) {
