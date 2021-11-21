@@ -1,0 +1,1 @@
+This folder contains the output data of the performance tests.
